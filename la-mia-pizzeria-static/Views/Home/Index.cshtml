@@ -2,12 +2,12 @@
     ViewData["Title"] = "Home Page";
     Layout = null;
     ListaPizze pizzeliste = new ListaPizze();
-    Pizze pizze1 = new Pizze("margherite", "inggredienti : suggo ", "~/img/fotopizza.png", 19.50);
-    Pizze pizze2 = new Pizze("margherite", "inggredienti : suggo ", "~/img/fotopizza.png", 19.50);
-    Pizze pizze3 = new Pizze("margherite", "inggredienti : suggo ", "~/img/fotopizza.png", 19.50);
-    pizzeliste.PizzeList.Add(pizze1);
-    pizzeliste.PizzeList.Add(pizze2);
-    pizzeliste.PizzeList.Add(pizze3);
+    //Pizze pizze1 = new Pizze("margherite", "suggo , salame, ecc ", "~/img/fotopizza.png", 19.50);
+    //Pizze pizze2 = new Pizze("margherite", "inggredienti : suggo ", "~/img/fotopizza.png", 19.50);
+    //Pizze pizze3 = new Pizze("margherite", "inggredienti : suggo ", "~/img/fotopizza.png", 19.50);
+    //pizzeliste.PizzeList.Add(pizze1);
+    //pizzeliste.PizzeList.Add(pizze2);
+    //pizzeliste.PizzeList.Add(pizze3);
 }
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -17,22 +17,24 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     -->
-
-    <!--
-     <h1>@pizze1.Nome</h1>
-     <p>@pizze1.Descrizione</p>
-     <img src=@Url.Content(@pizze1.UrlFoto) />
-     <p>prezzo @pizze1.Prezzo $</p> 
-     -->
+    <div class="container ">
     @{
+
         foreach (var PizzeTavolo in pizzeliste.PizzeList)
         {
-            <h1>@PizzeTavolo.Nome</h1>
-            <p>@PizzeTavolo.Descrizione</p>
-            <img src=@Url.Content(PizzeTavolo.UrlFoto) />
-            <p>@PizzeTavolo.Prezzo</p>
+
+            <div class="card m-5" style="width: 18rem;">
+                <img src=@Url.Content(PizzeTavolo.UrlFoto) />
+                <div class="card-body">
+                    <h5 class="card-title">@PizzeTavolo.Nome</h5>
+                    <p class="card-text">@PizzeTavolo.Descrizione</p>
+                    <p>Prezzo @PizzeTavolo.Prezzo</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
         }
     }
+    </div>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -1,33 +1,30 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Cryptography.X509Certificates;
 
 namespace la_mia_pizzeria_static.Models
 {
-
-    
-    public class Pizze 
+    [Table("Pizze")]
+    public class Pizze
     {
+        [Key]
+        public int ID { get; set; }
         public string Nome { get; set; }
         public string Descrizione { get; set; }
         public string UrlFoto { get; set; }
         public double Prezzo { get; set; }
 
-        public Pizze(string nome, string descrizione, string urlfoto, double prezzo)
+        public Pizze() { }
+        public Pizze(int id ,string nome, string descrizione, string urlfoto, double prezzo)
         {
-            Nome = nome;
-            Descrizione = descrizione;
-            UrlFoto = urlfoto;
-            Prezzo = prezzo;
+            this.ID = id;
+            this.Nome = nome;
+            this.Descrizione = descrizione;
+            this.UrlFoto = urlfoto;
+            this.Prezzo = prezzo;
         }
     }
+
 }
 
 
-public class Classe
-{
-    public string Nome { get; set; }
-
-    public Classe(string nome)
-        {
-        this.Nome = nome;
-        }
-}
