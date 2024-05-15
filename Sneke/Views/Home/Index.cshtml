@@ -1,0 +1,98 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+@{
+    string MioNome = "paolo";
+    string MioCognome = "Flore";
+}
+<h2>@MioNome @MioCognome </h2>
+
+@{
+
+    static int SommaNumeri()
+    {
+        int n = 20;
+        int a = 0;
+        for (int i = 0; i <= n; i++)
+        {
+            a+= i ;    
+        }
+        return a;
+    }
+}
+
+@{
+    int risultato = SommaNumeri();
+}
+<p>@risultato</p>
+
+
+
+
+@{
+
+    string frase = "nel mezzo del cammin di nostra vita";
+    int Count = 0;
+    foreach (char le in frase)
+    {
+        if (le == 'a')
+        {
+            Count++;
+        }
+    }
+}
+<p>@Count</p>
+
+@{
+
+    int v = 18;
+    List<int> numneri = new List<int>();
+    numneri.Add(1);
+    numneri.Add(90);
+    Random random = new Random();
+    int RandomLista = random.Next(1, 90);
+    for (int i = 1; i <= v; i++ )
+    {
+        numneri.Add(RandomLista);
+        //<p>@numneri[i]</p> 
+    }
+}
+
+
+    <ul>
+        @{
+        foreach (int numero in numneri)
+        {
+            <li>@numero</li>
+        }
+    }
+
+    </ul>
+
+
+@{
+    DateTime dateTime = DateTime.Now;
+    DateTime Sette = dateTime.AddDays(-7);
+}
+
+<p>@dateTime.ToString("yyyy / MM / dd     HH: mm:ss")</p>
+
+<p>@Sette.ToString("yyyy / MM / dd")</p>
+@{
+    DateTime oggi = DateTime.Now;
+    DateTime DomaniAnno = oggi.AddYears(1);
+}
+<p>data @DomaniAnno</p>
+<!--
+    b. che giorno della settimana è oggi (il risultato dovrà  essere il nome del giorno (Lunedì, Martedì, ...)
+    c. che giorno della settimana sarà  nello stesso giorno e mese di oggi ma tra un anno (il risultato dovrÃ  essere il nome del giorno (Lunedì, Martedì, ...)-->
+<!--non sono riuscito a fare i giorni in Lunedì, Martedì, ... 
+    so che la funzione da usare e DayOfWeek ma non ci sono riuscito 
+-->
