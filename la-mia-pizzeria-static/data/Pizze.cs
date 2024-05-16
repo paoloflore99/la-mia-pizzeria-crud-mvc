@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Cryptography.X509Certificates;
 
-namespace la_mia_pizzeria_static.Models
+namespace la_mia_pizzeria_static.data
 {
     [Table("Pizze")]
     public class Pizze
@@ -15,13 +15,13 @@ namespace la_mia_pizzeria_static.Models
         public double Prezzo { get; set; }
 
         public Pizze() { }
-        public Pizze(int id ,string nome, string descrizione, string urlfoto, double prezzo)
+        public Pizze( string nome, string descrizione, string urlfoto, double prezzo)
         {
-            this.ID = id;
-            this.Nome = nome;
-            this.Descrizione = descrizione;
-            this.UrlFoto = urlfoto;
-            this.Prezzo = prezzo;
+          
+            Nome = nome;
+            Descrizione = descrizione;
+            UrlFoto = urlfoto;
+            Prezzo = prezzo;
         }
     }
 

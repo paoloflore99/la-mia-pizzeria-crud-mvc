@@ -1,4 +1,6 @@
-﻿namespace la_mia_pizzeria_static.Models
+﻿using la_mia_pizzeria_static.data;
+
+namespace la_mia_pizzeria_static.Models
 {
     public class ListaPizze
     {

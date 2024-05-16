@@ -1,26 +1,20 @@
-﻿@{
+﻿@using la_mia_pizzeria_static.data
+@model List<Pizze>
+@{
     ViewData["Title"] = "Home Page";
     Layout = null;
+
     ListaPizze pizzeliste = new ListaPizze();
-    //Pizze pizze1 = new Pizze("margherite", "suggo , salame, ecc ", "~/img/fotopizza.png", 19.50);
-    //Pizze pizze2 = new Pizze("margherite", "inggredienti : suggo ", "~/img/fotopizza.png", 19.50);
-    //Pizze pizze3 = new Pizze("margherite", "inggredienti : suggo ", "~/img/fotopizza.png", 19.50);
-    //pizzeliste.PizzeList.Add(pizze1);
-    //pizzeliste.PizzeList.Add(pizze2);
-    //pizzeliste.PizzeList.Add(pizze3);
 }
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <div class="text-center">
-    <!--
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    -->
+
     <div class="container ">
     @{
 
-        foreach (var PizzeTavolo in pizzeliste.PizzeList)
+        foreach (Pizze PizzeTavolo in pizzeliste.PizzeList)
         {
 
             <div class="card m-5" style="width: 18rem;">
@@ -32,8 +26,8 @@
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
-        }
-    }
+            }
+            }
     </div>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
