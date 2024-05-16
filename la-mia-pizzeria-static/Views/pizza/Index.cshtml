@@ -18,7 +18,7 @@
                     <p>@pizza.Prezzo $</p>
                     <p>@pizza.Descrizione</p>
                     <p>@pizza.UrlFoto</p>
-                    <a href="#">dettagglio pizza</a>
+                    <a href=" @Url.Action("Views", "PizzaController", new { Pizze = Id })">dettagglio pizza</a>
                 </div>
             }   
         }
