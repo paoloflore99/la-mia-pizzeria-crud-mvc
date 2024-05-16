@@ -5,18 +5,16 @@ namespace la_mia_pizzeria_static.data
     public class PizzeManager 
     {
 
-       public static void AggiungoPizze(Pizze pizze)
+        public static Pizze GetPrendere(int id)
         {
-            using PizzeCintest db = new();
-            
-                db.Add(pizze);
-                db.SaveChanges();
-            
+            using PizzeCintest db = new PizzeCintest();
+            return db.Pizze.FirstOrDefault(x => x.ID == id);
         }
 
-        public static List<Pizze> PrendereID(int id)
+        public static List<Pizze> ListaPizee()
         {
-            return null;
+            using PizzeCintest db = new PizzeCintest();
+            return db.Pizze.ToList();
         }
     }
 
