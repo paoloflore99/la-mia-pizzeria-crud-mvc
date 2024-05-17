@@ -9,13 +9,20 @@ namespace la_mia_pizzeria_static.data
     {
         [Key]
         public int ID { get; set; }
-        [Required]
+        [StringLength(100)]
+        [Required(ErrorMessage = "metti nome pizza")]
         public string Nome { get; set; }
-        [Required]
+
+        [StringLength(100)]
+        [Required (ErrorMessage = "metti la descrizione")]
         public string Descrizione { get; set; }
-        [Required]
+
+        [StringLength(1000)]
+        [Required (ErrorMessage ="Metti url for ")]
+
+
         public string UrlFoto { get; set; }
-        [Required]
+        [Range(1,20000)]
         public double Prezzo { get; set; }
 
         public Pizze() { }
