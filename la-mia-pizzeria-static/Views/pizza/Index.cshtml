@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <div class="text-center">
+    <a href="@Url.Action("Create")">Creazione pizze</a>
 
     <div class="container ">
         @{
@@ -18,11 +19,12 @@
                     <p>@pizza.Prezzo $</p>
                     <p>@pizza.Descrizione</p>
                     <p>@pizza.UrlFoto</p>
-                    <a href=" @Url.Action("Views", "PizzaController", new { Pizze = Id })">dettagglio pizza</a>
+                    <a href="@Url.Action("PerId", "Pizza", new { id = pizza.ID })">dettagglio pizza</a>
                 </div>
             }   
         }
     </div>
+
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

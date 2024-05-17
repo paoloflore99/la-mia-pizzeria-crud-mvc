@@ -39,6 +39,17 @@ namespace la_mia_pizzeria_static.Controllers
         {
             return View(PizzeManager.GetPrendere(ID));
         }
+        /*
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Pizze)
+        {
+            if()
+            {
+                return View("Create" );
+            }
 
+            return RedirectToAction("Index");
+        }*/
     }
 }

@@ -16,6 +16,14 @@ namespace la_mia_pizzeria_static.data
             using PizzeCintest db = new PizzeCintest();
             return db.Pizze.ToList();
         }
+
+
+        public static Pizze Creazione()
+        {
+            using PizzeCintest db = new PizzeCintest();
+            return null;
+        }
+        
     }
 
 

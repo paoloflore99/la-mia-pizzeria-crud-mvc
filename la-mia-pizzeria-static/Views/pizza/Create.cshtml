@@ -1,0 +1,8 @@
+﻿@using la_mia_pizzeria_static.data;
+@model Pizze
+
+
+<form asp-controller="Pizze" asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <p>create</p>
+</form>
