@@ -108,11 +108,23 @@ namespace la_mia_pizzeria_static.Controllers
 
 
 
-
-        public IActionResult Delete()
+        [HttpPost]
+        public IActionResult Delete(int id)
         {
-            return null;
+            using (PizzeCintest db = new PizzeCintest())
+            {
+                Pizze PizzeRdit = db.Pizze.Where(pizze => pizze.ID == id).FirstOrDefault();
+                if (PizzeRdit != null)
+                {
+                    db.Pizze.Remove(PizzeRdit);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
         }
-
     }
 }
