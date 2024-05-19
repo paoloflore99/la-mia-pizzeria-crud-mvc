@@ -78,6 +78,37 @@ namespace la_mia_pizzeria_static.Controllers
                 }
             } 
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int Id, Pizze dati)
+        {
+
+            if(!ModelState.IsValid)
+            {
+                return View("Edit", dati);
+            }
+            using (PizzeCintest db = new PizzeCintest())
+            {
+                Pizze PizzeRdit = db.Pizze.Where(pizze => pizze.ID == Id).FirstOrDefault();
+                if (PizzeRdit != null)
+                {
+                    PizzeRdit.Nome = dati.Nome;
+                    PizzeRdit.Descrizione = dati.Descrizione;
+                    PizzeRdit.Prezzo = dati.Prezzo;
+                    PizzeRdit.UrlFoto = dati.UrlFoto;
+                    db.SaveChanges();
+                    return RedirectToAction("PerId", new { Id = PizzeRdit.ID });
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+        }
+
+
+
+
         public IActionResult Delete()
         {
             return null;
