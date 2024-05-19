@@ -6,4 +6,7 @@
 <a href="@Url.Action("Index", "Pizza")">Torna in Home </a>
 <br />
 <a href="@Url.Action("Edit", "Pizza", new { id = Model.ID} )">Modifica</a>
-
+<form asp-controller="Pizza" asp-action="Delete" asp-route-id="@Model.ID" method="post">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn-danger btn-sm btn"> cancella</button>
+</form>
