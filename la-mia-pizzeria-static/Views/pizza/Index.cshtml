@@ -6,25 +6,32 @@
 }
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./css/Mio.css" />
 </head>
-<div class="text-center">
-    <a href="@Url.Action("Create", "Pizza")">Creazione pizze</a>
-
-    <div class="container ">
-        @{
-            foreach (var pizza in Model)
-            {
-                <div class="card">
-                    <p>@pizza.Nome</p>
-                    <p>@pizza.Prezzo $</p>
-                    <p>@pizza.Descrizione</p>
-                    <p>@pizza.UrlFoto</p>
-                    <a href="@Url.Action("PerId", "Pizza", new { id = pizza.ID })">dettagglio pizza</a>
-                </div>
-            }   
-        }
+<div class="sfondo">
+    <div class="container text-center">
+        <a class="btn btn-primary mb-4" href="@Url.Action("Create", "Pizza")">Creazione pizze</a>
+        <div class="scolla">
+            <div class="row">
+                @{
+                    foreach (var pizza in Model)
+                    {
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img src="@pizza.UrlFoto" class="card-img-top" alt="@pizza.Nome">
+                                <div class="card-body">
+                                    <h5 class="card-title">@pizza.Nome</h5>
+                                    <p class="card-text">@pizza.Descrizione</p>
+                                    <p class="card-text"><strong>Prezzo:</strong> @pizza.Prezzo $</p>
+                                    <a href="@Url.Action("PerId", "Pizza", new { id = pizza.ID })" class="btn btn-info">Dettaglio pizza</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
     </div>
-
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
