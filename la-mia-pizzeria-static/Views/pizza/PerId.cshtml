@@ -3,6 +3,7 @@
 
 <p>@Model.Nome</p>
 <p>@Model.Descrizione</p>
-<a href="@Url.Action("Index", "pizza")">Torna in Home </a>
-<a href="@Url.Action("Edit", "pizza", new { id = pizze.ID} )">Modifica</a>
+<a href="@Url.Action("Index", "Pizza")">Torna in Home </a>
+<br />
+<a href="@Url.Action("Edit", "Pizza", new { id = Model.ID} )">Modifica</a>
 

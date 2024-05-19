@@ -63,13 +63,20 @@ namespace la_mia_pizzeria_static.Controllers
             }
             
         }
-        public IActionResult update(int Id)
+        public IActionResult Edit(int Id)
         {
             using (PizzeCintest db = new PizzeCintest())
             {
-                //Pizze Edit = new db;
-            }
-            return null;
+                Pizze Edit = db.Pizze.Where(pizze => pizze.ID == Id).FirstOrDefault();
+                if(Edit == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return View(Edit);
+                }
+            } 
         }
         public IActionResult Delete()
         {
