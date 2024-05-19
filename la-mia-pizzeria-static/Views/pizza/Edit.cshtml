@@ -1,9 +1,8 @@
 ﻿@using la_mia_pizzeria_static.data;
 @model Pizze
 
-
 <div class="container">
-    <form asp-controller="Pizza" asp-action="Create" method="post">
+    <form asp-controller="Pizza" asp-action="Update" asp-all-route-id="@Model.ID" method="post">
         @Html.AntiForgeryToken()
         <div class="mb-3">
             <strong>Nome:</strong>
@@ -13,7 +12,7 @@
         <div class="mb-3">
             <strong>Descrizione</strong>
             <input asp-for="Descrizione" class="d-block w-100" />
-            <span class ="text-danger" asp-validation-for=Descrizione></span>
+            <span class="text-danger" asp-validation-for=Descrizione></span>
         </div>
         <div class="mb-3">
             <strong>Prezzo</strong>
@@ -30,4 +29,3 @@
         </div>
     </form>
 </div>
-<a href="@Url.Action("Index", "pizza")">Torna in Home </a>

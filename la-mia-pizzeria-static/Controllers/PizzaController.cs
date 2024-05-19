@@ -40,10 +40,10 @@ namespace la_mia_pizzeria_static.Controllers
             return View(PizzeManager.GetPrendere(ID));
         }
         
-        [HttpGet]
+
         public IActionResult Create()
         {
-            return RedirectToAction("Index");
+            return View();
         }
 
         [HttpPost]
@@ -62,6 +62,18 @@ namespace la_mia_pizzeria_static.Controllers
                 return RedirectToAction("Index");
             }
             
+        }
+        public IActionResult update(int Id)
+        {
+            using (PizzeCintest db = new PizzeCintest())
+            {
+                //Pizze Edit = new db;
+            }
+            return null;
+        }
+        public IActionResult Delete()
+        {
+            return null;
         }
 
     }
