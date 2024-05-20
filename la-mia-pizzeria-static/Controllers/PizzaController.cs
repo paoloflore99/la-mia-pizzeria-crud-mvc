@@ -39,6 +39,7 @@ namespace la_mia_pizzeria_static.Controllers
         public IActionResult  PerId(int ID)
         {
             return View(PizzeManager.GetPrendere(ID));
+            // View.Model == OggettoPassato
         }
         
 

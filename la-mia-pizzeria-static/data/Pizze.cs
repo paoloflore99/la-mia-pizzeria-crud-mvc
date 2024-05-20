@@ -36,6 +36,12 @@ namespace la_mia_pizzeria_static.data
             UrlFoto = urlfoto;
             Prezzo = prezzo;
         }
+
+        public string DammiNomeCategoria()
+        {
+            if (Categoria != null) return Categoria.CateggoriePizze;
+            else return "categoria non presente";
+        }   
     }
 
 }

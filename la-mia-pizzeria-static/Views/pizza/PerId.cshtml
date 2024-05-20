@@ -1,8 +1,12 @@
 ﻿@using la_mia_pizzeria_static.data;
 @model Pizze
 
+
 <p>@Model.Nome</p>
 <p>@Model.Descrizione</p>
+
+<p>@Model.DammiNomeCategoria()</p>
+
 <a href="@Url.Action("Index", "Pizza")">Torna in Home </a>
 <br />
 <a href="@Url.Action("Edit", "Pizza", new { id = Model.ID} )">Modifica</a>
