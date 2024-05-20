@@ -41,9 +41,20 @@ namespace la_mia_pizzeria_static.Controllers
         }
         
 
+
+
+
         public IActionResult Create()
         {
-            return View();
+            using (PizzeCintest db = new PizzeCintest())
+            {
+                List<Categoria> categorias = db.Categoria.ToList();
+                PizzeCategorie model = new PizzeCategorie();
+                model.Categorias = categorias;
+                model.Pizze =new Pizze();
+                return View("Create", model);
+            }
+                
         }
 
         [HttpPost]
@@ -63,6 +74,11 @@ namespace la_mia_pizzeria_static.Controllers
             }
             
         }
+
+
+
+
+
         public IActionResult Edit(int Id)
         {
             using (PizzeCintest db = new PizzeCintest())

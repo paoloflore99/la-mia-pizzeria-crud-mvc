@@ -1,5 +1,5 @@
 ﻿@using la_mia_pizzeria_static.data;
-@model Pizze
+@model PizzeCategorie
 
 
 <div class="container">
@@ -7,23 +7,23 @@
         @Html.AntiForgeryToken()
         <div class="mb-3">
             <strong>Nome:</strong>
-            <input asp-for="Nome" class="d-block w-100" />
-            <span asp-validation-for=Nome class="text-danger"></span>
+            <input asp-for="Pizze.Nome" class="d-block w-100" />
+            <span asp-validation-for=Pizze.Nome class="text-danger"></span>
         </div>
         <div class="mb-3">
             <strong>Descrizione</strong>
-            <input asp-for="Descrizione" class="d-block w-100" />
-            <span class ="text-danger" asp-validation-for=Descrizione></span>
+            <input asp-for="Pizze.Descrizione" class="d-block w-100" />
+            <span class="text-danger" asp-validation-for=Pizze.Descrizione></span>
         </div>
         <div class="mb-3">
             <strong>Prezzo</strong>
-            <input asp-for="Prezzo" class="d-block w-100" />
-            <span asp-validation-for=Prezzo class="text-danger"></span>
+            <input asp-for="Pizze.Prezzo" class="d-block w-100" />
+            <span asp-validation-for=Pizze.Prezzo class="text-danger"></span>
         </div>
         <div class="mb-3">
             <strong>Foto</strong>
-            <input asp-for="UrlFoto" class="d-block w-100" />
-            <span asp-validation-for=UrlFoto class="text-danger"></span>
+            <input asp-for="Pizze.UrlFoto" class="d-block w-100" />
+            <span asp-validation-for=Pizze.UrlFoto class="text-danger"></span>
         </div>
         <div class="text-end">
             <input type="submit" class="btn btn-small btn-info" value="pizzeinserita">
