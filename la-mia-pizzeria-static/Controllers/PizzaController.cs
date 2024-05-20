@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using la_mia_pizzeria_static.data;
+using la_mia_pizzeria_static.Migrations;
 namespace la_mia_pizzeria_static.Controllers
 {
     public class PizzaController : Controller
@@ -56,7 +57,7 @@ namespace la_mia_pizzeria_static.Controllers
             }
                 
         }
-
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Pizze pizzeinserita)
@@ -74,7 +75,36 @@ namespace la_mia_pizzeria_static.Controllers
             }
             
         }
+        */
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(PizzeCategorie categoriepizze)
+        {
+            if (!ModelState.IsValid)
+            {
+                using (PizzeCintest db = new PizzeCintest())
+                {
+                    List<Categoria> categorias = db.Categoria.ToList();
+                    categoriepizze.Categorias = categorias;
+                    return View(categoriepizze);
+                }    
+            }
+
+            using (PizzeCintest db = new PizzeCintest())
+            {
+                Pizze CreazionePizze = new Pizze();
+                CreazionePizze.Nome = categoriepizze.Pizze.Nome;
+                CreazionePizze.Descrizione = categoriepizze.Pizze.Descrizione;
+                CreazionePizze.UrlFoto = categoriepizze.Pizze.UrlFoto;
+                CreazionePizze.Prezzo = categoriepizze.Pizze.Prezzo;
+                CreazionePizze.CategoriaId = categoriepizze.Pizze.CategoriaId;
+                db.Add(CreazionePizze);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+        }
 
 
 
