@@ -111,24 +111,37 @@ namespace la_mia_pizzeria_static.Controllers
                 }
             } 
         }
+
+
+
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int Id, Pizze dati)
+        public IActionResult Edit(int Id, PizzeCategorie dati)
         {
 
             if(!ModelState.IsValid)
             {
-                return View("Edit", dati);
+                using (PizzeCintest db = new PizzeCintest())
+                {
+                    List<Categoria> categorias = db.Categoria.ToList();
+                    dati.Categorias = categorias;
+                    return View("Edit", dati);
+                }
+                
             }
             using (PizzeCintest db = new PizzeCintest())
             {
                 Pizze PizzeRdit = db.Pizze.Where(pizze => pizze.ID == Id).FirstOrDefault();
                 if (PizzeRdit != null)
                 {
-                    PizzeRdit.Nome = dati.Nome;
-                    PizzeRdit.Descrizione = dati.Descrizione;
-                    PizzeRdit.Prezzo = dati.Prezzo;
-                    PizzeRdit.UrlFoto = dati.UrlFoto;
+                    PizzeRdit.Nome = dati.Pizze.Nome;
+                    PizzeRdit.Descrizione = dati.Pizze.Descrizione;
+                    PizzeRdit.Prezzo = dati.Pizze.Prezzo;
+                    PizzeRdit.UrlFoto = dati.Pizze.UrlFoto;
+                    PizzeRdit.CategoriaId = dati.Pizze.CategoriaId;
                     db.SaveChanges();
                     return RedirectToAction("PerId", new { Id = PizzeRdit.ID });
                 }
