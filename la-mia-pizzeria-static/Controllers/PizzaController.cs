@@ -57,25 +57,8 @@ namespace la_mia_pizzeria_static.Controllers
             }
                 
         }
-        /*
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Create(Pizze pizzeinserita)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(pizzeinserita);
-            }
 
-            using (PizzeCintest db = new PizzeCintest())
-            {
-                db.Add(pizzeinserita);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            
-        }
-        */
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
