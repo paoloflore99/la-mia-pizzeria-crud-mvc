@@ -103,7 +103,11 @@ namespace la_mia_pizzeria_static.Controllers
                 }
                 else
                 {
-                    return View(Edit);
+                    List<Categoria> categgiria = db.Categoria.ToList();
+                    PizzeCategorie model = new PizzeCategorie();
+                    model.Pizze = Edit;
+                    model.Categorias = categgiria;
+                    return View(model);
                 }
             } 
         }
