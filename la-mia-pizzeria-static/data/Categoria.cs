@@ -2,7 +2,7 @@
 {
     public class Categoria
     {
-        public int id {  get; set; }
+        public int Id {  get; set; }
         public string CateggoriePizze { get; set; }
         public List<Pizze> PizzeList { get; set;}
     }
