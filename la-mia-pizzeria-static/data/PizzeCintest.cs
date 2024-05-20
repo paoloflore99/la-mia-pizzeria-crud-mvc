@@ -13,6 +13,8 @@ namespace la_mia_pizzeria_static.data;
 public class PizzeCintest : DbContext
 {
     public DbSet<Pizze> Pizze { get; set; }
+
+    
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=Pizze;" +
