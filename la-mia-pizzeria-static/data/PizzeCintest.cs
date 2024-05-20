@@ -14,7 +14,7 @@ public class PizzeCintest : DbContext
 {
     public DbSet<Pizze> Pizze { get; set; }
 
-    
+    public DbSet<Categoria> Categoria { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer("Data Source=localhost;Initial Catalog=Pizze;" +
