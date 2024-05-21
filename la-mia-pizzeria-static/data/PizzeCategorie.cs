@@ -4,5 +4,7 @@
     {
         public Pizze Pizze { get; set; }
         public List<Categoria>? Categorias { get; set; }
+        public List<Ingredienti>? Ingredientis { get; set; }
+        public List<string>? SelezionaInredienti { get; set; }
     }
 }
