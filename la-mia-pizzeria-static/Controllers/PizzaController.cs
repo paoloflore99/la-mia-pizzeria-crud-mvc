@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using la_mia_pizzeria_static.data;
 using la_mia_pizzeria_static.Migrations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace la_mia_pizzeria_static.Controllers
 {
     public class PizzaController : Controller
     {
+
+
         public IActionResult Index()
         {
             using PizzeCintest db = new PizzeCintest();
@@ -41,23 +44,35 @@ namespace la_mia_pizzeria_static.Controllers
             return View(PizzeManager.GetPrendere(ID));
             // View.Model == OggettoPassato
         }
+
+
+
+
         
-
-
-
-
         public IActionResult Create()
         {
             using (PizzeCintest db = new PizzeCintest())
             {
-                List<Categoria> categorias = db.Categoria.ToList();
                 PizzeCategorie model = new PizzeCategorie();
+                List<Categoria> categorias = db.Categoria.ToList();
+                List<Ingredienti> ingrediti = db.Ingredientis.ToList();
+                List<SelectListItem> Listaingredienti = new List<SelectListItem>();
+                foreach(Ingredienti ingredient in ingrediti)
+                {
+                    Listaingredienti.Add(new SelectListItem()
+                    {
+                        Text = ingredient.Name,
+                        Value = ingredient.Id.ToString()
+                    });;
+                }
+                model.Ingredientis = Listaingredienti;
                 model.Categorias = categorias;
                 model.Pizze =new Pizze();
                 return View("Create", model);
             }
                 
         }
+        
 
 
 
