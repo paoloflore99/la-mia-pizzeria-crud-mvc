@@ -20,12 +20,12 @@ namespace la_mia_pizzeria_static.data
         [StringLength(1000)]
         [Required (ErrorMessage ="Metti url for ")]
 
-
         public string UrlFoto { get; set; }
         [Range(1,20000)]
         public double Prezzo { get; set; }
         public int? CategoriaId { get; set; }
         public Categoria? Categoria { get; set; }
+        public List<Ingredienti>? Ingredientis { get; set; }
 
         public Pizze() { }
         public Pizze( string nome, string descrizione, string urlfoto, double prezzo)

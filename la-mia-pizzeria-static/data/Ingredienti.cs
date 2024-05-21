@@ -2,5 +2,8 @@
 {
     public class Ingredienti
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public List<Pizze> PizzeList { get; set; }
     }
 }
