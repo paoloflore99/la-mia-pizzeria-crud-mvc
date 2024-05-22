@@ -7,10 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace la_mia_pizzeria_static.data;
 
-public class PizzeCintest : DbContext
+public class PizzeCintest : IdentityDbContext<IdentityUser>
 {
     public DbSet<Pizze> Pizze { get; set; }
 

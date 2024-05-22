@@ -6,7 +6,15 @@
 <p>@Model.Descrizione</p>
 
 <p>@Model.DammiNomeCategoria()</p>
-
+@{
+    if(Model.Ingredientis != null)
+    {
+        foreach (var Ingredientis in Model.Ingredientis)
+        {
+            <p>@Ingredientis.Name</p>
+        }
+    }
+}
 <a href="@Url.Action("Index", "Pizza")">Torna in Home </a>
 <br />
 <a href="@Url.Action("Edit", "Pizza", new { id = Model.ID} )">Modifica</a>

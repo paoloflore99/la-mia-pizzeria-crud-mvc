@@ -48,7 +48,7 @@ namespace la_mia_pizzeria_static.Controllers
 
 
 
-        
+        [HttpGet]
         public IActionResult Create()
         {
             using (PizzeCintest db = new PizzeCintest())
@@ -84,8 +84,20 @@ namespace la_mia_pizzeria_static.Controllers
             {
                 using (PizzeCintest db = new PizzeCintest())
                 {
+                    List<SelectListItem> Listaingredienti = new List<SelectListItem>();
+                    List<Ingredienti> ingrediti = db.Ingredientis.ToList();
                     List<Categoria> categorias = db.Categoria.ToList();
+                    foreach(Ingredienti ingrent in ingrediti)
+                    {
+                        Listaingredienti.Add(new SelectListItem()
+                        {
+                            Text = ingrent.Name,
+                            Value = ingrent.Id.ToString()
+                        });
+                    }
                     categoriepizze.Categorias = categorias;
+                    categoriepizze.Ingredientis = Listaingredienti;
+                    //db.Ingredientis = Listaingredienti;
                     return View(categoriepizze);
                 }    
             }
@@ -93,12 +105,16 @@ namespace la_mia_pizzeria_static.Controllers
             using (PizzeCintest db = new PizzeCintest())
             {
                 Pizze CreazionePizze = new Pizze();
-                CreazionePizze.Nome = categoriepizze.Pizze.Nome;
-                CreazionePizze.Descrizione = categoriepizze.Pizze.Descrizione;
-                CreazionePizze.UrlFoto = categoriepizze.Pizze.UrlFoto;
-                CreazionePizze.Prezzo = categoriepizze.Pizze.Prezzo;
-                CreazionePizze.CategoriaId = categoriepizze.Pizze.CategoriaId;
-                db.Add(CreazionePizze);
+                List<SelectListItem> Listaingredienti = new List<SelectListItem>();
+                if(categoriepizze.SelezionaInredienti != null )
+                {
+                    foreach (string SelezionaInredienti in categoriepizze.SelezionaInredienti)
+                    {
+                        
+                    }
+                }
+
+                db.Add(categoriepizze.Pizze);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
