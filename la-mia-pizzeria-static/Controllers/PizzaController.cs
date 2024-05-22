@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using la_mia_pizzeria_static.data;
 using la_mia_pizzeria_static.Migrations;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 namespace la_mia_pizzeria_static.Controllers
 {
     public class PizzaController : Controller
@@ -47,7 +48,7 @@ namespace la_mia_pizzeria_static.Controllers
 
 
 
-
+        [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -72,10 +73,10 @@ namespace la_mia_pizzeria_static.Controllers
             }
                 
         }
-        
 
 
 
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(PizzeCategorie categoriepizze)
@@ -185,7 +186,7 @@ namespace la_mia_pizzeria_static.Controllers
         }
 
 
-
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         public IActionResult Delete(int id)
         {

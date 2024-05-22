@@ -1,12 +1,13 @@
+using la_mia_pizzeria_static.data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace la_mia_pizzeria_static.Areas.Identity.Data;
 
-public class ProfileContext : IdentityDbContext<IdentityUser>
+public class PizzaCintest : IdentityDbContext<IdentityUser>
 {
-    public ProfileContext(DbContextOptions<ProfileContext> options)
+    public PizzaCintest(DbContextOptions<PizzeCintest> options)
         : base(options)
     {
     }

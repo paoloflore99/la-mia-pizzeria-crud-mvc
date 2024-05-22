@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using la_mia_pizzeria_static.Areas.Identity.Data;
+using la_mia_pizzeria_static.data;
 namespace la_mia_pizzeria_static
 {
     public class Program
@@ -8,12 +9,17 @@ namespace la_mia_pizzeria_static
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+                      //  var connectionString = builder.Configuration.GetConnectionString("PizzeCintestConnection") ?? throw new InvalidOperationException("Connection string 'PizzeCintestConnection' not found.");
+                        
                         
 
-                        builder.Services.AddDbContext<ProfileContext>();
+             builder.Services.AddDbContext<PizzeCintest>();
 
-                        builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ProfileContext>();
+             
+            
+           builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            .AddRoles<IdentityRole>()
+             .AddEntityFrameworkStores<PizzeCintest>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -32,7 +38,7 @@ namespace la_mia_pizzeria_static
             app.UseStaticFiles();
 
             app.UseRouting();
-                        app.UseAuthentication();;
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
