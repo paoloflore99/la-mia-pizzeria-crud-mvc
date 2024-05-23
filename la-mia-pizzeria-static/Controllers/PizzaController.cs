@@ -5,6 +5,9 @@ using la_mia_pizzeria_static.data;
 using la_mia_pizzeria_static.Migrations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json.Linq;
+using static System.Net.Mime.MediaTypeNames;
+using Microsoft.EntityFrameworkCore;
 namespace la_mia_pizzeria_static.Controllers
 {
     public class PizzaController : Controller
@@ -175,8 +178,21 @@ namespace la_mia_pizzeria_static.Controllers
             {
                 using (PizzeCintest db = new PizzeCintest())
                 {
-                    List<Categoria> categorias = db.Categoria.ToList();
-                    dati.Categorias = categorias;
+                    List<Ingredienti> ingredienti = db.Ingredientis.ToList();
+                    List<Categoria> categgiria = db.Categoria.ToList();
+                    PizzeCategorie model = new PizzeCategorie();
+                    model.Categorias = categgiria;
+                    List<SelectListItem> Listaingredienti = new List<SelectListItem>();
+                    foreach (Ingredienti ingrent in ingredienti)
+                    {
+                        Listaingredienti.Add(new SelectListItem()
+                        {
+                            Text = ingrent.Name,
+                            Value = ingrent.Id.ToString()
+                        });
+                    }
+                    dati.Ingredientis = Listaingredienti;
+                    dati.Categorias = categgiria;
                     return View("Edit", dati);
                 }
                 
@@ -184,9 +200,19 @@ namespace la_mia_pizzeria_static.Controllers
 
             using (PizzeCintest db = new PizzeCintest())
             {
-                Pizze PizzeRdit = db.Pizze.Where(pizze => pizze.ID == Id).FirstOrDefault();
+
+                Pizze PizzeRdit = db.Pizze.Where(pizze => pizze.ID == Id).Include(p => p.Ingredientis).FirstOrDefault();
+                PizzeRdit.Ingredientis.Clear();
                 if (PizzeRdit != null)
                 {
+                    foreach(string selezionaIngrediente in dati.SelezionaInredienti)
+                    {
+                        int selezionaIngredienteId = int.Parse(selezionaIngrediente);
+                        Ingredienti ingredienti = db.Ingredientis.
+                            Where(x => x.Id == selezionaIngredienteId).FirstOrDefault();
+                        PizzeRdit.Ingredientis.Add(ingredienti);
+                    }
+
                     PizzeRdit.Nome = dati.Pizze.Nome;
                     PizzeRdit.Descrizione = dati.Pizze.Descrizione;
                     PizzeRdit.Prezzo = dati.Pizze.Prezzo;
