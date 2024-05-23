@@ -48,7 +48,7 @@ namespace la_mia_pizzeria_static.Controllers
 
 
 
-        [Authorize(Roles = "ADMIN")]
+       // [Authorize(Roles = "ADMIN")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -76,7 +76,7 @@ namespace la_mia_pizzeria_static.Controllers
 
 
 
-        [Authorize(Roles = "ADMIN")]
+        //[Authorize(Roles = "ADMIN")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(PizzeCategorie categoriepizze)
@@ -98,7 +98,6 @@ namespace la_mia_pizzeria_static.Controllers
                     }
                     categoriepizze.Categorias = categorias;
                     categoriepizze.Ingredientis = Listaingredienti;
-                    //db.Ingredientis = Listaingredienti;
                     return View(categoriepizze);
                 }    
             }
@@ -106,12 +105,17 @@ namespace la_mia_pizzeria_static.Controllers
             using (PizzeCintest db = new PizzeCintest())
             {
                 Pizze CreazionePizze = new Pizze();
-                List<SelectListItem> Listaingredienti = new List<SelectListItem>();
+                //List<SelectListItem> Listaingredienti = new List<SelectListItem>();
+                categoriepizze.Pizze.Ingredientis = new List<Ingredienti>();    
                 if(categoriepizze.SelezionaInredienti != null )
                 {
                     foreach (string SelezionaInredienti in categoriepizze.SelezionaInredienti)
                     {
-                        
+                        Ingredienti ingredienti = db.Ingredientis.FirstOrDefault(i => i.Id.ToString() == SelezionaInredienti);
+                        if(ingredienti != null)
+                        {
+                            categoriepizze.Pizze.Ingredientis.Add(ingredienti);
+                        }
                     }
                 }
 
@@ -124,7 +128,7 @@ namespace la_mia_pizzeria_static.Controllers
 
 
 
-
+        [HttpGet]
         public IActionResult Edit(int Id)
         {
             using (PizzeCintest db = new PizzeCintest())

@@ -42,6 +42,24 @@
                 }
             </select>
         </div>
+
+        <div class="mb-3">
+            <select asp-for="Pizze.Ingredientis" rows="10" class="d-block w-100">
+                <option value=""></option>
+                @foreach ( var ingredienti in Model.Pizze.Ingredientis)
+                {
+                    @if (Model.Ingredientis.Count == ingredienti.Id)
+                    {
+                        <option value="@ingredienti.Id" selected>@ingredienti.Name</option>
+                    }
+                    else
+                    {
+                        <option value="@ingredienti.Id">@ingredienti.Name</option>
+                    }
+                }
+            </select>
+        </div>
+
         <div class="text-end">
             <input type="submit" class="btn btn-small btn-info" value="pizzeinserita">
         </div>
