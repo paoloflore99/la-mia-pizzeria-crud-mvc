@@ -5,17 +5,26 @@ namespace la_mia_pizzeria_static.data
     public class PizzeManager 
     {
 
-        public static Pizze GetPrendere(int id, bool IncludiCategoria=true)
+        public static Pizze GetPrendere(int id, bool IncludiCategoria=true, bool IncludiIngredienti = true)
         {
             using PizzeCintest db = new PizzeCintest();
             //return db.Pizze.FirstOrDefault(x => x.ID == id);
-            if (!IncludiCategoria)
+            if (!IncludiCategoria && IncludiIngredienti)
             {
                 return db.Pizze.FirstOrDefault(x => x.ID == id);
             }
             else
             {
-                return db.Pizze.Where(x => x.ID == id).Include(c => c.Categoria).FirstOrDefault();
+                var query = db.Pizze.Where(x => x.ID == id);
+                if (IncludiCategoria)
+                {
+                    query = query.Include(c => c.Categoria);
+                }
+                if (IncludiIngredienti)
+                {
+                    query = query.Include(p => p.Ingredientis);
+                }
+                return query.FirstOrDefault();
             }
 
         }

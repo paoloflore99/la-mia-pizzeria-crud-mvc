@@ -133,6 +133,7 @@ namespace la_mia_pizzeria_static.Controllers
         {
             using (PizzeCintest db = new PizzeCintest())
             {
+
                 Pizze Edit = db.Pizze.Where(pizze => pizze.ID == Id).FirstOrDefault();
                 if(Edit == null)
                 {
@@ -140,10 +141,21 @@ namespace la_mia_pizzeria_static.Controllers
                 }
                 else
                 {
+                    List<Ingredienti> ingredienti = db.Ingredientis.ToList();
                     List<Categoria> categgiria = db.Categoria.ToList();
                     PizzeCategorie model = new PizzeCategorie();
                     model.Pizze = Edit;
                     model.Categorias = categgiria;
+                    List<SelectListItem> Listaingredienti = new List<SelectListItem>();
+                    foreach(Ingredienti ingrent in ingredienti)
+                    {
+                        Listaingredienti.Add(new SelectListItem()
+                        {
+                            Text = ingrent.Name,
+                            Value = ingrent.Id.ToString()
+                        });
+                    }
+                    model.Ingredientis = Listaingredienti;
                     return View(model);
                 }
             } 
@@ -169,6 +181,7 @@ namespace la_mia_pizzeria_static.Controllers
                 }
                 
             }
+
             using (PizzeCintest db = new PizzeCintest())
             {
                 Pizze PizzeRdit = db.Pizze.Where(pizze => pizze.ID == Id).FirstOrDefault();

@@ -1,19 +1,25 @@
 ﻿@using la_mia_pizzeria_static.data;
 @model Pizze
 
-
+<h4>Noeme:</h4>
 <p>@Model.Nome</p>
+<h4>Descrizione:</h4>
 <p>@Model.Descrizione</p>
-
+<h4>Categoria:</h4>
 <p>@Model.DammiNomeCategoria()</p>
-@{
-    if(Model.Ingredientis != null)
-    {
-        foreach (var Ingredientis in Model.Ingredientis)
+<h4>Ingredienti:</h4>
+@if (Model.Ingredientis != null)
+{
+    <ul>
+        @foreach (var ingrediente in Model.Ingredientis)
         {
-            <p>@Ingredientis.Name</p>
+            <li>@ingrediente.Name</li>
         }
-    }
+    </ul>
+}
+else
+{
+    <p>Nessun ingrediente disponibile.</p>
 }
 
 <a href="@Url.Action("Index", "Pizza")">Torna in Home </a>
